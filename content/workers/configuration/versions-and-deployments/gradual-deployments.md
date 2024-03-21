@@ -138,7 +138,7 @@ This is only an example, so the versions assigned to your Durable Objects may be
 - When you specify each version in the same order as the previous deployment and increase the percentage of a version, Durable Objects which were previously assigned that version will not be assigned a different version. In our example, Durable Object "foo" would never revert from version "B" to version "A".
 - The Durable Object will only be [reset](/durable-objects/reference/troubleshooting/#durable-object-reset-because-its-code-was-updated) when it is assigned a different version, so each Durable Object will only be reset once in our example.
 
-## Version keys and session affinity
+## Version affinity
 
 By default, the percentages configured when using gradual deployments operate on a per-request basis — a request has a X% probability of invoking one of two versions of the Worker in the [deployment](/workers/configuration/versions-and-deployments/#deployments). 
 
@@ -153,9 +153,6 @@ curl -s https://$SCRIPT_NAME.$SUBDOMAIN.workers.dev -H 'Cf-Worker-Version-Key: f
 For a given [deployment](/workers/configuration/deployments/), all requests with a version key set to `foo` will be handled by the same version of your Worker. The specific version of your Worker that the version key `foo` corresponds to is determined by the percentages you have configured for each Worker version in your deployment.
 
 You can set the `Cf-Worker-Version-Key` header both when making an external request from the Internet to your Worker, as well as when making a subrequest from one Worker to another Worker using a [service binding](/workers/runtime-apis/bindings/service-bindings/).
-### Setting `Cf-Worker-Version-Key` using Ruleset Engine
-
-If the unique identifier that you want to provide to `Cf-Worker-Version-Key` is in the URL of the incoming request, you can configure a [Ruleset Engine](/ruleset-engine/) rule on your zone to extract this key from the path or querystring, and use its value to set `Cf-Worker-Verison-Key`. This allows you to ensure version affinity, while avoiding having to modify the external client that makes the request.
 
 ## Observability
 
