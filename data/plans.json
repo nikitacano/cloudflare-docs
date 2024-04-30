@@ -1159,14 +1159,14 @@
         "availability": {
           "title": "Availability",
           "summary": "Available on all plans",
-          "free": "Yes",
+          "free": "No",
           "pro": "Yes",
           "biz": "Yes",
           "ent": "Yes"
         },
         "rules": {
           "title": "Number of snippets",
-          "free": 5,
+          "free": 0,
           "pro": 10,
           "biz": 25,
           "ent": 50
